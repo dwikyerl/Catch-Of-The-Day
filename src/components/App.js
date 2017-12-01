@@ -21,6 +21,8 @@ class App extends React.Component {
     this.loadSamples = this.loadSamples.bind(this);
     this.addToOrder = this.addToOrder.bind(this);
     this.updateFish = this.updateFish.bind(this);
+    this.removeFish = this.removeFish.bind(this);
+    this.removeFromOrder = this.removeFromOrder.bind(this);
   }
   
   componentWillMount(){
@@ -67,6 +69,12 @@ class App extends React.Component {
     fishes[key] = updatedFish;
     this.setState({ fishes });
   }
+
+  removeFish(key){
+    const fishes = { ...this.state.fishes };
+    fishes[key] = null;
+    this.setState({ fishes });
+  }
   
   loadSamples(){
     this.setState({
@@ -82,6 +90,13 @@ class App extends React.Component {
     // update our state
     this.setState({ order })
   }
+
+  removeFromOrder(key){
+    const order = {...this.state.order};
+    delete order[key];
+    this.setState({ order });
+  }
+
   
   render() {
     const fishes = Object.keys(this.state.fishes).map((key) => (
@@ -104,11 +119,14 @@ class App extends React.Component {
         <Order 
           fishes={this.state.fishes} 
           order={this.state.order}
+          removeFromOrder={this.removeFromOrder}
           params={this.props.match.params}
         />
         <Inventory 
           fishes={this.state.fishes}
           addFish={this.addFish}
+          removeFish={this.removeFish}
+          removeFromOrder={this.removeFromOrder}
           updateFish={this.updateFish}
           loadSamples={this.loadSamples}
         />

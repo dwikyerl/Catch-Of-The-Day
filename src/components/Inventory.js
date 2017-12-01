@@ -7,6 +7,7 @@ class Inventory extends React.Component {
     super(props);
     this.renderInventory = this.renderInventory.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleChange(e, key) {
@@ -17,6 +18,11 @@ class Inventory extends React.Component {
       [e.target.name]: e.target.value
     };
     this.props.updateFish(key, updatedFish);
+  }
+
+  handleDelete(key){
+    this.props.removeFish(key);
+    this.props.removeFromOrder(key);
   }
 
 
@@ -32,7 +38,7 @@ class Inventory extends React.Component {
         </select>
         <textarea ref={(input) => this.desc = input} name="desc" value={fish.desc} placeholder="Fish Desc" onChange={(e) => this.handleChange(e, key)}/>
         <input ref={(input) => this.image = input} name="image" value={fish.image} type="text" placeholder="Fish Image" onChange={(e) => this.handleChange(e, key)}/>
-        <button type="submit">+ Add Item</button>
+        <button onClick={() => this.handleDelete(key)}>Remove Item</button>
       </div>
     )
   }
