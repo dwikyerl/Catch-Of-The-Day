@@ -1,11 +1,19 @@
 import React from 'react';
 import { formatPrice } from '../helpers';
+import PropTypes from 'prop-types';
 import CSSTtransitionGroup from 'react-addons-css-transition-group';
 
 class Order extends React.Component {
   constructor(props){
     super(props);
     this.renderOrder = this.renderOrder.bind(this);
+  }
+
+  static propTypes = {
+    fishes: PropTypes.object.isRequired, 
+    order: PropTypes.object.isRequired,
+    removeFromOrder: PropTypes.func.isRequired,
+    params: PropTypes.object.isRequired
   }
   
   renderOrder(key){

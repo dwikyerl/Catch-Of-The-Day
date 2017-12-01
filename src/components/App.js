@@ -5,6 +5,7 @@ import Inventory from './Inventory';
 import sampleFishes from '../sample-fishes';
 import Fish from './Fish';
 import base from '../base';
+import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
 
 class App extends React.Component {
@@ -23,6 +24,10 @@ class App extends React.Component {
     this.updateFish = this.updateFish.bind(this);
     this.removeFish = this.removeFish.bind(this);
     this.removeFromOrder = this.removeFromOrder.bind(this);
+  }
+
+  static propTypes = {
+    match: PropTypes.object.isRequired
   }
   
   componentWillMount(){

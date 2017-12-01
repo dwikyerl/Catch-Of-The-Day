@@ -1,7 +1,18 @@
 import React from 'react';
 import { formatPrice } from '../helpers';
+import PropTypes from 'prop-types';
 
 class Fish extends React.Component {
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    desc: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    status: PropTypes.string.isRequired,
+    index: PropTypes.string.isRequired,
+    addToOrder: PropTypes.func.isRequired
+  }
+
   render() {
     const { name, image, desc, price, status, index} = this.props;
     const isAvailable = status === 'available';

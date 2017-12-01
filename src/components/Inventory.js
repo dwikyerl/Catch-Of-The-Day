@@ -1,5 +1,6 @@
 import React from 'react';
 import AddFishForm from './AddFishForm';
+import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
 
 class Inventory extends React.Component {
@@ -8,6 +9,15 @@ class Inventory extends React.Component {
     this.renderInventory = this.renderInventory.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  static propTypes = {
+    fishes: PropTypes.object.isRequired,
+    addFish: PropTypes.func.isRequired,
+    updateFish: PropTypes.func.isRequired,
+    removeFish: PropTypes.func.isRequired,
+    removeFromOrder: PropTypes.func.isRequired,
+    loadSamples: PropTypes.func.isRequired
   }
 
   handleChange(e, key) {
