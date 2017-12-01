@@ -5,6 +5,7 @@ import Inventory from './Inventory';
 import sampleFishes from '../sample-fishes';
 import Fish from './Fish';
 import base from '../base';
+// import { Link } from 'react-router-dom';
 
 class App extends React.Component {
   constructor(props){
@@ -19,6 +20,7 @@ class App extends React.Component {
     this.addFish = this.addFish.bind(this);
     this.loadSamples = this.loadSamples.bind(this);
     this.addToOrder = this.addToOrder.bind(this);
+    this.updateFish = this.updateFish.bind(this);
   }
   
   componentWillMount(){
@@ -58,6 +60,12 @@ class App extends React.Component {
     fishes[`fish-${timestamp}`] = fish;
     // set state
     this.setState({fishes});
+  }
+
+  updateFish(key, updatedFish){
+    const fishes = {...this.state.fishes};
+    fishes[key] = updatedFish;
+    this.setState({ fishes });
   }
   
   loadSamples(){
@@ -99,7 +107,9 @@ class App extends React.Component {
           params={this.props.match.params}
         />
         <Inventory 
-          addFish={this.addFish} 
+          fishes={this.state.fishes}
+          addFish={this.addFish}
+          updateFish={this.updateFish}
           loadSamples={this.loadSamples}
         />
       </div>
