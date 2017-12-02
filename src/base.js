@@ -10,7 +10,8 @@ const config = {
     messagingSenderId: "923989345096"
 };
 
-const app = firebase.initializeApp(config);
+export const app = firebase.initializeApp(config);
 const base = Rebase.createClass(app.database());
 
+export const firebaseAuth = firebase.auth;
 export default base;
